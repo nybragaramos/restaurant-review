@@ -169,7 +169,7 @@ createRestaurantHTML = (restaurant) => {
   const header = document.createElement('header');
   header.className = 'restaurant-name';
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   
   header.append(name);
