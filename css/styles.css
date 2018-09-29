@@ -40,13 +40,16 @@ header {
   background-color: #252831;
   text-align:center;
   text-transform: uppercase;
-  padding: 8px 0 8px 0;
 } 
 header h1 {
   color: #fff;
   font-size: 1.5em;
   font-weight: 200;
-  letter-spacing: 8px;
+  letter-spacing: 0.4em;
+}
+
+header a {
+  padding: 0.5em;
 }
 
 main {
