@@ -6,6 +6,8 @@ var newMap;
  */
 document.addEventListener('DOMContentLoaded', (event) => {  
   initMap();
+  $('header').load('header.html'); 
+  $('footer').load('footer.html'); 
 });
 
 /**

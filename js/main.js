@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   initMap(); // added 
   fetchNeighborhoods();
   fetchCuisines();
+  $('header').load('header.html'); 
+  $('footer').load('footer.html'); 
 });
 
 /**
