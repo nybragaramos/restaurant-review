@@ -147,10 +147,15 @@ resetRestaurants = (restaurants) => {
  */
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
   const restaurantsSection = $('.restaurants');
-  restaurants.forEach(restaurant => {
-    restaurantsSection.append(createRestaurantHTML(restaurant));
-  });
-  addMarkersToMap();
+  if(restaurants.length != 0) {
+    $('.no-restaurants').hide();
+    restaurants.forEach(restaurant => {
+      restaurantsSection.append(createRestaurantHTML(restaurant));
+    });
+    addMarkersToMap();
+  } else {
+    $('.no-restaurants').show();
+  }
 }
 
 /**
