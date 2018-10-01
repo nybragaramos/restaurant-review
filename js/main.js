@@ -160,12 +160,24 @@ createRestaurantHTML = (restaurant) => {
   const article = document.createElement('li');
   article.className = 'restaurant';
 
+  const picture = document.createElement('picture');
+  article.append(picture);
+
+  const mediumSource = document.createElement('source');
+  mediumSource.media = '(min-width: 415px) and (max-width: 768px)';
+  mediumSource.srcset = DBHelper.imageUrlForRestaurantMedium(restaurant);
+  picture.append(mediumSource);
+
+  const smallSource = document.createElement('source');
+  smallSource.media = '(max-width: 414px)';
+  smallSource.srcset = DBHelper.imageUrlForRestaurantSmall(restaurant);
+  picture.append(smallSource);
+
   const image = document.createElement('img');
   image.className = 'restaurant-img';
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.alt = `image from restaurant ${restaurant.name}`;
-  image.setAttribute('aria-hidden', true);
-  article.append(image);
+  image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  picture.append(image);
 
   const header = document.createElement('header');
   header.className = 'restaurant-name';
@@ -192,7 +204,7 @@ createRestaurantHTML = (restaurant) => {
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
   more.href = DBHelper.urlForRestaurant(restaurant);
-  more.setAttribute('aria-label', `View Details from ${restaurant.name}`);
+  more.setAttribute('aria-label', `View Details from ${restaurant.name} in ${restaurant.neighborhood}`);
   article.append(more)
 
   return article
