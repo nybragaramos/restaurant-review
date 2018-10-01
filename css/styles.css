@@ -102,15 +102,30 @@ footer {
 }
 /* ====================== Map ====================== */
 #map {
-  height: 400px;
+  height: 250px;
   width: 100%;
   background-color: #ccc;
+}
+.skip-map {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  background: white;
+  padding: 8px;
+  z-index: 1000;
+  color: #754c00;
+}
+.skip-map:focus {
+  top: 200px;
+
 }
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   width: 100%;
   background-color: #3397DB;
-  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .filter-options h2 {
   color: white;
@@ -141,6 +156,7 @@ footer {
   flex-wrap: wrap;
   justify-content: space-evenly;
   background-color: #f3f3f3;
+  padding: 0;
 }
 .restaurant {
   background-color: #fff;
@@ -149,6 +165,7 @@ footer {
   min-width: 160px;
   max-width: 500px;
   font-family: Arial,sans-serif;
+  list-style-type: none; 
 }
 .restaurant-img {
   background-color: #ccc;

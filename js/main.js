@@ -132,8 +132,7 @@ updateRestaurants = () => {
 resetRestaurants = (restaurants) => {
   // Remove all restaurants
   self.restaurants = [];
-  const restaurantsList = $('.restaurants');
-  restaurantsList.innerHTML = '';
+  $('.restaurants').html('');
 
   // Remove all map markers
   if (self.markers) {
@@ -158,12 +157,14 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  * Create restaurant HTML.
  */
 createRestaurantHTML = (restaurant) => {
-  const article = document.createElement('article');
+  const article = document.createElement('li');
   article.className = 'restaurant';
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = `image from restaurant ${restaurant.name}`;
+  image.setAttribute('aria-hidden', true);
   article.append(image);
 
   const header = document.createElement('header');

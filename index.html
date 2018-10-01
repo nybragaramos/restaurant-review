@@ -14,19 +14,19 @@
   <header></header>
 
   <main>
-    <section id="map-container">
+    <section id="map-container" role="application" aria-label="Map with restaurants">
+      <a href="#filters" class="skip-map">Skip the Google Maps controls</a>
       <div id="map"></div>
     </section>
-    <section class="filter-options" aria-label='filters'>
-        <h2>Filters</h2>
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+    <section class="filter-options" aria-label="Filters" id="filters">
+          <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
         </select>
         <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
           <option value="all">All Cuisines</option>
         </select>
     </section>
-    <section class='restaurants'></section>
+    <ul class='restaurants'></ul>
   </main>
   
   <footer id="footer"></footer>
