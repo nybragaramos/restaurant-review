@@ -19,11 +19,11 @@
       <div id="map"></div>
     </section>
     <section class="filter-options" aria-label="Filters" id="filters">
-          <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
-          <option value="all">All Neighborhoods</option>
+          <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-label="Neighborhoods">
+          <option value="all" aria-label="All Neighborhoods">All Neighborhoods</option>
         </select>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
-          <option value="all">All Cuisines</option>
+        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()" aria-label="cuisines">
+          <option value="all" aria-label="All Cuisines">All Cuisines</option>
         </select>
     </section>
     <ul class='restaurants-list'></ul>

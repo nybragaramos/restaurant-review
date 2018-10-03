@@ -54,7 +54,7 @@ header {
   text-transform: uppercase;
 } 
 header h1 {
-  color: #fff;
+  color: #FFCCE5;
   font-size: 1.5em;
   font-weight: 100;
   letter-spacing: 0.5em;
@@ -66,8 +66,8 @@ main {
   min-height: 100%;
 }
 footer {
-  background-color: #444;
-  color: #aaa;
+  background-color: #404040;
+  color: #FFCCE5;
   font-size: 8pt;
   letter-spacing: 1px;
   padding: 25px;
@@ -265,7 +265,7 @@ footer {
 }
 .restaurant-cuisine {
   background-color: #333;
-  color: #ddd;
+  color: #FFCCE5;
   font-size: 1.5em;
   font-weight: 300;
   letter-spacing: 0.5em;
@@ -279,7 +279,7 @@ footer {
   width: 100%;
 }
 #reviews-container h2 {
-  color: #f58500;
+  color: #AD0058;
   font-size: 2em;
   font-weight: 300;
   margin: 0.5em 0.5em 0 0.5em;

@@ -33,12 +33,8 @@ fetchNeighborhoods = () => {
  * Set neighborhoods HTML.
  */
 fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
-  const select = document.getElementById('neighborhoods-select');
   neighborhoods.forEach(neighborhood => {
-    const option = document.createElement('option');
-    option.innerHTML = neighborhood;
-    option.value = neighborhood;
-    select.append(option);
+    $('#neighborhoods-select').append(`<option value="${neighborhood}" aria-label=${neighborhood}>${neighborhood}</option>`);
   });
 }
 
@@ -60,13 +56,8 @@ fetchCuisines = () => {
  * Set cuisines HTML.
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
-  const select = document.getElementById('cuisines-select');
-
   cuisines.forEach(cuisine => {
-    const option = document.createElement('option');
-    option.innerHTML = cuisine;
-    option.value = cuisine;
-    select.append(option);
+    $('#cuisines-select').append(`<option value="${cuisine}" aria-label=${cuisine}>${cuisine}</option>`);
   });
 }
 
@@ -208,6 +199,7 @@ createRestaurantHTML = (restaurant) => {
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
+  more.className = 'restaurants-more';
   more.href = DBHelper.urlForRestaurant(restaurant);
   more.setAttribute('aria-label', `View Details from ${restaurant.name} in ${restaurant.neighborhood}`);
   article.append(more)
