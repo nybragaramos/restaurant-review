@@ -110,7 +110,7 @@ footer {
     text-decoration: underline;
 }
 /* ====================== Map ====================== */
-#map {
+#map, #map-details {
   height: 50vh;
   width: 100%;
   background-color: #ccc;
@@ -230,12 +230,6 @@ footer {
   justify-content: space-between;
 }
 
-/*#info-container {
-  justify-content: space-between;
-}
-.restaurant-open {
-  justify-content: center;
-}*/
 .restaurant-days {
   width: 25%;
 }
@@ -244,7 +238,7 @@ footer {
 }
 
 #restaurant-container,
-#restaurant-map {
+#restaurant-map-container {
   width: 100%;
 }
 
@@ -330,7 +324,7 @@ footer {
 }
 
 @media screen and (max-width:763px) and (orientation: landscape) {
-  #map-home {
+  #map {
     display: none;
   }
 
@@ -341,4 +335,53 @@ footer {
     height: 30vh;
   }
 
+}
+
+@media screen and (min-width:600px){
+  #map-details {
+    height: 100%;
+  }
+
+  #restaurant-container,
+  #restaurant-map-container {
+    width: calc(50% - 2em);
+    margin: 1em;
+  }
+}
+
+@media screen and (max-width:400px){
+  .restaurant-days {
+    width: 35%;
+  }
+  .restaurant-hours {
+    width: 65%;
+  }
+}
+
+@media screen and (min-width:480px) and (max-width:599px){
+  .restaurant-days {
+    width: 20%;
+  }
+  .restaurant-hours {
+    width: 80%;
+  }
+}
+
+
+@media screen and (min-width:600px) and (max-width: 770px){
+  .restaurant-days {
+    width: 35%;
+  }
+  .restaurant-hours {
+    width: 65%;
+  }
+}
+
+@media screen and (min-width:1250px){
+  .restaurant-days {
+    width: 15%;
+  }
+  .restaurant-hours {
+    width: 85%;
+  }
 }

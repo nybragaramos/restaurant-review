@@ -18,7 +18,7 @@ initMap = () => {
     if (error) { // Got an error!
       console.error(error);
     } else {      
-      self.newMap = L.map('map', {
+      self.newMap = L.map('map-details', {
         center: [restaurant.latlng.lat, restaurant.latlng.lng],
         zoom: 16,
         scrollWheelZoom: false
@@ -88,19 +88,19 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
 
   const tablet = document.createElement('source');
-  tablet.media = '(min-width: 551px) and (max-width: 870px)';
-  tablet.srcset = DBHelper.imageUrlForRestaurantSmall(restaurant);
+  tablet.media = '(min-width: 450px) and (max-width: 569px)';
+  tablet.srcset = DBHelper.imageUrlForRestaurantMedium(restaurant);
   $('#restaurant-picture').append(tablet);
 
   const smartphone = document.createElement('source');
-  smartphone.media = '(max-width: 414px)';
+  smartphone.media = '(max-width: 449px)';
   smartphone.srcset = DBHelper.imageUrlForRestaurantSmall(restaurant);
   $(tablet).after(smartphone);
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.alt = `image from restaurant ${restaurant.name} in ${restaurant.neighborhood}`;
-  image.src = DBHelper.imageUrlForRestaurantMedium(restaurant);
+  image.src = DBHelper.imageUrlForRestaurant(restaurant);
   $(smartphone).after(image);
 
   $('.restaurant-cuisine').html(restaurant.cuisine_type);
