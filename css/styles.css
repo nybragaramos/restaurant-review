@@ -230,6 +230,9 @@ footer {
   justify-content: space-between;
 }
 
+.restaurant-open h2 {
+  width: 100%;
+}
 .restaurant-days {
   width: 25%;
 }
