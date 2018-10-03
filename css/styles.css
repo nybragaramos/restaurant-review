@@ -131,7 +131,7 @@ footer {
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
   width: 100%;
-  background-color: #3397DB;
+  background-color: #F5007B;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -184,7 +184,7 @@ footer {
   object-fit: contain;
 }
 .restaurants-name h2 {
-  color: #f18200;
+  color: #FF8FCB;
   font-family: Arial,sans-serif;
   font-size: 1.5em;
   font-weight: 200;
@@ -196,7 +196,7 @@ footer {
   padding: 1em 1em 0 1em;
 }
 .restaurants-list-item a {
-  background-color: orange;
+  background-color: #AD0058;
   border-bottom: 3px solid #eee;
   color: #fff;
   display: inline-block;
@@ -245,7 +245,7 @@ footer {
 }
 
 .restaurant-name {
-  color: #f18200;
+  color: #AD0058;
   font-family: Arial,sans-serif;
   font-size: 2em;
   font-weight: 200;
@@ -303,7 +303,7 @@ footer {
 }
 
 .review-name {
-  background-color: #f18200;
+  background-color: #AD0058;
   color: #fff;
   text-align: center;
   margin: 0;
