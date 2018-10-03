@@ -160,14 +160,14 @@ footer {
 
 /* ====================== Restaurant Listing ====================== */
 
-.restaurants {
+.restaurants-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   background-color: #f3f3f3;
   padding: 0;
 }
-.restaurant {
+.restaurants-list-item {
   background-color: #fff;
   border: 2px solid #ccc;
   margin: 1em;
@@ -175,14 +175,14 @@ footer {
   font-family: Arial,sans-serif;
   list-style-type: none; 
 }
-.restaurant-img {
+.restaurants-img {
   background-color: #ccc;
   display: block;
   margin: 0;
   width: 100%; 
   object-fit: contain;
 }
-.restaurant-name h2 {
+.restaurants-name h2 {
   color: #f18200;
   font-family: Arial,sans-serif;
   font-size: 1.5em;
@@ -190,11 +190,11 @@ footer {
   letter-spacing: 0;
   padding: 0.5em;
 }
-.restaurant-info {
+.restaurants-info {
   font-size: 1em;
   padding: 1em 1em 0 1em;
 }
-.restaurant a {
+.restaurants-list-item a {
   background-color: orange;
   border-bottom: 3px solid #eee;
   color: #fff;

@@ -146,7 +146,7 @@ resetRestaurants = (restaurants) => {
  * Create all restaurants HTML and add them to the webpage.
  */
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
-  const restaurantsSection = $('.restaurants');
+  const restaurantsSection = $('.restaurants-list');
   if(restaurants.length != 0) {
     $('.no-restaurants').hide();
     restaurants.forEach(restaurant => {
@@ -163,7 +163,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
  */
 createRestaurantHTML = (restaurant) => {
   const article = document.createElement('li');
-  article.className = 'restaurant';
+  article.className = 'restaurants-list-item';
 
   const picture = document.createElement('picture');
   article.append(picture);
@@ -179,13 +179,13 @@ createRestaurantHTML = (restaurant) => {
   picture.append(smartphone);
 
   const image = document.createElement('img');
-  image.className = 'restaurant-img';
+  image.className = 'restaurants-img';
   image.alt = `image from restaurant ${restaurant.name} in ${restaurant.neighborhood}`;
   image.src = DBHelper.imageUrlForRestaurantMedium(restaurant);
   picture.append(image);
 
   const header = document.createElement('header');
-  header.className = 'restaurant-name';
+  header.className = 'restaurants-name';
 
   const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
@@ -194,7 +194,7 @@ createRestaurantHTML = (restaurant) => {
   article.append(header);
 
   const info = document.createElement('section');
-  info.className = 'restaurant-info';
+  info.className = 'restaurants-info';
 
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
