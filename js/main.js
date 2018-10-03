@@ -168,20 +168,20 @@ createRestaurantHTML = (restaurant) => {
   const picture = document.createElement('picture');
   article.append(picture);
 
-  const mediumSource = document.createElement('source');
-  mediumSource.media = '(min-width: 415px) and (max-width: 768px)';
-  mediumSource.srcset = DBHelper.imageUrlForRestaurantMedium(restaurant);
-  picture.append(mediumSource);
+  const tablet = document.createElement('source');
+  tablet.media = '(min-width: 551px) and (max-width: 870px)';
+  tablet.srcset = DBHelper.imageUrlForRestaurantSmall(restaurant);
+  picture.append(tablet);
 
-  const smallSource = document.createElement('source');
-  smallSource.media = '(max-width: 414px)';
-  smallSource.srcset = DBHelper.imageUrlForRestaurantSmall(restaurant);
-  picture.append(smallSource);
+  const smartphone = document.createElement('source');
+  smartphone.media = '(max-width: 414px)';
+  smartphone.srcset = DBHelper.imageUrlForRestaurantSmall(restaurant);
+  picture.append(smartphone);
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
-  image.alt = `image from restaurant ${restaurant.name}`;
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = `image from restaurant ${restaurant.name} in ${restaurant.neighborhood}`;
+  image.src = DBHelper.imageUrlForRestaurantMedium(restaurant);
   picture.append(image);
 
   const header = document.createElement('header');
