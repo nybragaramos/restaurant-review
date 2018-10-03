@@ -82,18 +82,28 @@ fetchRestaurantFromURL = (callback) => {
  * Create restaurant HTML and add it to the webpage
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
-  const name = document.getElementById('restaurant-name');
-  name.innerHTML = restaurant.name;
+  $('.restaurant-name').html(restaurant.name);
 
-  const address = document.getElementById('restaurant-address');
-  address.innerHTML = restaurant.address;
+  $('.restaurant-address').html(restaurant.address);
 
-  const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
-  const cuisine = document.getElementById('restaurant-cuisine');
-  cuisine.innerHTML = restaurant.cuisine_type;
+  const tablet = document.createElement('source');
+  tablet.media = '(min-width: 551px) and (max-width: 870px)';
+  tablet.srcset = DBHelper.imageUrlForRestaurantSmall(restaurant);
+  $('#restaurant-picture').append(tablet);
+
+  const smartphone = document.createElement('source');
+  smartphone.media = '(max-width: 414px)';
+  smartphone.srcset = DBHelper.imageUrlForRestaurantSmall(restaurant);
+  $(tablet).after(smartphone);
+
+  const image = document.createElement('img');
+  image.className = 'restaurant-img';
+  image.alt = `image from restaurant ${restaurant.name} in ${restaurant.neighborhood}`;
+  image.src = DBHelper.imageUrlForRestaurantMedium(restaurant);
+  $(smartphone).after(image);
+
+  $('.restaurant-cuisine').html(restaurant.cuisine_type);
 
   // fill operating hours
   if (restaurant.operating_hours) {
@@ -107,19 +117,9 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
  * Create restaurant operating hours HTML table and add it to the webpage.
  */
 fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
-  const hours = document.getElementById('restaurant-hours');
   for (let key in operatingHours) {
-    const row = document.createElement('tr');
-
-    const day = document.createElement('td');
-    day.innerHTML = key;
-    row.appendChild(day);
-
-    const time = document.createElement('td');
-    time.innerHTML = operatingHours[key];
-    row.appendChild(time);
-
-    hours.appendChild(row);
+    $('.restaurant-open').append(`<p class='restaurant-days'>${key}</p>
+      <p class='restaurant-hours'>${operatingHours[key]}</p>`);  
   }
 }
 
@@ -173,10 +173,9 @@ createReviewHTML = (review) => {
  * Add restaurant name to the breadcrumb navigation menu
  */
 fillBreadcrumb = (restaurant=self.restaurant) => {
-  const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
   li.innerHTML = restaurant.name;
-  breadcrumb.appendChild(li);
+  $('#breadcrumb').append(li);
 }
 
 /**

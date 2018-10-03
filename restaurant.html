@@ -24,21 +24,25 @@
   </nav>
   <!-- End breadcrumb -->
   <!-- Beginning main -->
-  <main id="maincontent">
-    <!-- Beginning map -->
-    <section id="map-container">
+  <main>
+    <div id="info-container">
+      <!-- Beginning restaurant -->
+      <section id="restaurant-container">
+        <h1 class="restaurant-name"></h1>
+        <picture id="restaurant-picture"></picture>
+        <p class="restaurant-cuisine"></p>
+        <p class="restaurant-address"></p>
+        <section class="restaurant-open"></section>
+      </section>
+      <!-- end restaurant -->
+      <!-- Beginning map -->
+      <section id="restaurant-map" role="application" aria-label="Map with restaurants">
+      <a href="#filters" class="skip-map">Skip the Google Maps controls</a>
       <div id="map"></div>
     </section>
-    <!-- End map -->
-    <!-- Beginning restaurant -->
-    <section id="restaurant-container">
-      <h1 id="restaurant-name"></h1>
-      <img id="restaurant-img">
-      <p id="restaurant-cuisine"></p>
-      <p id="restaurant-address"></p>
-      <table id="restaurant-hours"></table>
     </section>
-    <!-- end restaurant -->
+      <!-- End map -->
+    </div>
     <!-- Beginning reviews -->
     <section id="reviews-container">
       <ul id="reviews-list"></ul>

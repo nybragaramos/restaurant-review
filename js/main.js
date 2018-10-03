@@ -132,7 +132,7 @@ updateRestaurants = () => {
 resetRestaurants = (restaurants) => {
   // Remove all restaurants
   self.restaurants = [];
-  $('.restaurants').html('');
+  $('.restaurants-list').html('');
 
   // Remove all map markers
   if (self.markers) {
