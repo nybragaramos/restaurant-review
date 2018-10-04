@@ -8,6 +8,7 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
+  DBHelper.initFirebase();// Initialize Firebase
   initMap(); // added 
   fetchNeighborhoods();
   fetchCuisines();
@@ -19,12 +20,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
  * Fetch all neighborhoods and set their HTML.
  */
 fetchNeighborhoods = () => {
-  DBHelper.fetchNeighborhoods((error, neighborhoods) => {
-    if (error) { // Got an error
-      console.error(error);
+   DBHelper.fetchNeighborhoods((error, neighborhoods) => {
+    if(error) {
+      console.log(error);
     } else {
       self.neighborhoods = neighborhoods;
       fillNeighborhoodsHTML();
+    }
+  });
+}
+
+fetchCuisines = () => {
+  DBHelper.fetchCuisines((error, cuisines) => {
+    if (error) { // Got an error!
+      console.error(error);
+    } else {
+      self.cuisines = cuisines;
+      fillCuisinesHTML();
     }
   });
 }
@@ -80,6 +92,17 @@ initMap = () => {
   }).addTo(newMap);
 
   updateRestaurants();
+}
+
+initFirebase = () => {
+  firebase.initializeApp({
+    apiKey: "AIzaSyB7FsjinoYLISVk8g43GzY7_avpzJhpFxE",
+    authDomain: "restaurant-reviews-ab33f.firebaseapp.com",
+    databaseURL: "https://restaurant-reviews-ab33f.firebaseio.com",
+    projectId: "restaurant-reviews-ab33f",
+    storageBucket: "",
+    messagingSenderId: "811582858998"
+  });
 }
 /* window.initMap = () => {
   let loc = {

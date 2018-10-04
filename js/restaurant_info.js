@@ -4,8 +4,10 @@ var newMap;
 /**
  * Initialize map as soon as the page is loaded.
  */
-document.addEventListener('DOMContentLoaded', (event) => {  
+document.addEventListener('DOMContentLoaded', (event) => {
+  DBHelper.initFirebase();
   initMap();
+  fetchReviewsFromURL();
   $('header').load('header.html'); 
   $('footer').load('footer.html'); 
 });
@@ -79,6 +81,30 @@ fetchRestaurantFromURL = (callback) => {
 }
 
 /**
+ * Get current restaurant from page URL.
+ */
+fetchReviewsFromURL = (callback) => {
+  if (self.reviews) { // restaurant already fetched!
+    callback(null, self.reviews)
+    return;
+  }
+  const id = getParameterByName('id');
+  if (!id) { // no id found in URL
+    error = 'No restaurant id in URL'
+    callback(error, null);
+  } else {
+    DBHelper.fetchReviewsById(id, (error, reviews) => {
+    if (error) { // Got an error!
+      console.error(error);
+      return;
+    }
+      self.reviews = reviews.reviews;
+      fillReviewsHTML();
+      return;
+  });
+  }
+}
+/**
  * Create restaurant HTML and add it to the webpage
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
@@ -109,8 +135,6 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   if (restaurant.operating_hours) {
     fillRestaurantHoursHTML();
   }
-  // fill reviews
-  fillReviewsHTML();
 }
 
 /**
@@ -123,11 +147,11 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
   }
 }
 
+
 /**
  * Create all reviews HTML and add them to the webpage.
  */
-fillReviewsHTML = (reviews = self.restaurant.reviews) => {
-  
+fillReviewsHTML = (reviews = self.reviews) => {
   if (!reviews) {
     $('#reviews-container').append('<p>No reviews yet!</p>');
     return;

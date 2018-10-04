@@ -1,8 +1,8 @@
 /**
  * Common database helper functions.
  */
-const BASE_URL = 'https://nybragaramos.github.io/restaurant-review';
-
+//const BASE_URL = 'https://nybragaramos.github.io/restaurant-review';
+let restaurantsDB = [];
 class DBHelper {
 
 
@@ -10,29 +10,41 @@ class DBHelper {
    * Database URL.
    * Change this to restaurants.json file location on your server.
    */
-  static get DATABASE_URL() {
-    /*const port = 8000 // Change this to your server port
-    return `http://localhost:${port}/data/restaurants.json`;*/
+  /*static get DATABASE_URL() {
+    const port = 8000 // Change this to your server port
+    return `http://localhost:${port}/data/restaurants.json`;
     return `${BASE_URL}/data/restaurants.json`;
   }
-
+*/
   /**
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', DBHelper.DATABASE_URL);
-    xhr.onload = () => {
-      if (xhr.status === 200) { // Got a success response from server!
-        const json = JSON.parse(xhr.responseText);
-        const restaurants = json.restaurants;
-        callback(null, restaurants);
-      } else { // Oops!. Got an error from server.
-        const error = (`Request failed. Returned status of ${xhr.status}`);
+
+    if(restaurantsDB.length == 0){
+     // Fetch all restaurants
+     firebase.database().ref('restaurants').once('value', function(snapshot) {     
+        restaurantsDB = snapshot.val();
+        callback(null, restaurantsDB);
+      }, function(error) {
         callback(error, null);
-      }
-    };
-    xhr.send();
+      });
+    } else {
+      callback(null, restaurantsDB);
+    }
+  }
+
+  /**
+   * Fetch all reviews.
+   */
+  static fetchReviews(callback) {
+
+     // Fetch all reviews
+     firebase.database().ref('reviews').on('value', function(snapshot) {     
+        callback(null, snapshot.val());
+      }, function(error) {
+        callback(error, null);
+      });
   }
 
   /**
@@ -54,11 +66,21 @@ class DBHelper {
     });
   }
 
+  static fetchReviewsById(id, callback) {
+    // fetch all restaurants with proper error handling.
+    DBHelper.fetchReviews((error, reviews) => {
+      if (error) {
+        callback(error, null);
+      } else {
+        callback(null, reviews.find(r => r.id == id));
+      }
+    });
+  }
+
   /**
    * Fetch restaurants by a cuisine type with proper error handling.
    */
   static fetchRestaurantByCuisine(cuisine, callback) {
-    // Fetch all restaurants  with proper error handling
     DBHelper.fetchRestaurants((error, restaurants) => {
       if (error) {
         callback(error, null);
@@ -111,6 +133,7 @@ class DBHelper {
    * Fetch all neighborhoods with proper error handling.
    */
   static fetchNeighborhoods(callback) {
+
     // Fetch all restaurants
     DBHelper.fetchRestaurants((error, restaurants) => {
       if (error) {
@@ -147,22 +170,26 @@ class DBHelper {
    * Restaurant page URL.
    */
   static urlForRestaurant(restaurant) {
-    return (`${BASE_URL}/restaurant.html?id=${restaurant.id}`);
+    return `./restaurant.html?id=${restaurant.id}`;
+    /*return (`${BASE_URL}/restaurant.html?id=${restaurant.id}`);*/
   }
 
   /**
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`${BASE_URL}/img/${restaurant.photograph}`);
+    return `img/${restaurant.id}.jpg`;
+    /*return (`${BASE_URL}/img/${restaurant.photograph}`);*/
   }
 
   static imageUrlForRestaurantSmall(restaurant) {
-    return (`${BASE_URL}/img/small/${restaurant.photograph}`);
+    return `img/small/${restaurant.photograph}`;
+    /*return (`${BASE_URL}/img/small/${restaurant.photograph}`);*/
   }
 
   static imageUrlForRestaurantMedium(restaurant) {
-    return (`${BASE_URL}/img/medium/${restaurant.photograph}`);
+    return `img/medium/${restaurant.photograph}`;
+    /*return (`${BASE_URL}/img/medium/${restaurant.photograph}`);*/
   }
 
   /**
@@ -189,5 +216,23 @@ class DBHelper {
     return marker;
   } */
 
-}
+  static initFirebase(){
+  try {
+    firebase.initializeApp({
+    apiKey: "AIzaSyB7FsjinoYLISVk8g43GzY7_avpzJhpFxE",
+    authDomain: "restaurant-reviews-ab33f.firebaseapp.com",
+    databaseURL: "https://restaurant-reviews-ab33f.firebaseio.com",
+    projectId: "restaurant-reviews-ab33f",
+    storageBucket: "",
+    messagingSenderId: "811582858998"
+    });
 
+}
+catch(err) {
+    document.getElementById("demo").innerHTML = err.message;
+}
+    return;
+  //}
+  
+}
+}
