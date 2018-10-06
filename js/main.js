@@ -147,6 +147,8 @@ resetRestaurants = (restaurants) => {
   // Remove all restaurants
   self.restaurants = [];
   $('.restaurants-list').html('');
+  $('.no-restaurants').hide();
+
 
   // Remove all map markers
   if (self.markers) {
@@ -162,7 +164,6 @@ resetRestaurants = (restaurants) => {
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
   const restaurantsSection = $('.restaurants-list');
   if(restaurants.length != 0) {
-    $('.no-restaurants').hide();
     restaurants.forEach(restaurant => {
       restaurantsSection.append(createRestaurantHTML(restaurant));
     });
